@@ -259,7 +259,7 @@ const ExhibitionCard = ({ exhibition, index }) => {
 };
 
 export default function Exhibitions() {
-  const demoItems = [{ link: "#", text: "XPECTO'26", image: "./logo.png" }];
+  const demoItems = [{ link: "#", text: "XPECTO", image: "./logo.png" }];
 
   const [exhibitions, setExhibitions] = useState([]);
   const [loading, setLoading] = useState(true);
