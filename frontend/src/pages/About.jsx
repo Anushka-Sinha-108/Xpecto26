@@ -16,15 +16,31 @@ export default function About() {
   const [error, setError] = useState(null);
 
   const developers = [
-    { name: "Divyansh Jindal", role: "Full Stack Developer" },
-    { name: "Vansh Pandey", role: "Full Stack Developer" },
+    { name: "Divyansh Jindal", role: "Full Stack Developer", image: "https://image2url.com/r2/default/images/1769153935938-8daa0940-3eb3-43f5-b3fc-55d7ea222d98.png" },
+    { name: "Vansh Pandey", role: "Full Stack Developer", image: "https://image2url.com/r2/default/images/1769154252767-6f378aa0-3bbe-4b62-90e4-1d602793cfc5.png" },
   ];
 
   const conveners = [
-    { name: "Convener Name", role: "Convener" },
-    { name: "Co-Convener 1", role: "Co-Convener" },
-    { name: "Co-Convener 2", role: "Co-Convener" },
-    { name: "Co-Convener 3", role: "Co-Convener" },
+    {
+      name: "Piyush Roy",
+      role: "Convener",
+      image: "https://image2url.com/r2/default/images/1769153674001-3e82bd23-4f70-45c3-9ef8-cb6a47223b72.jpeg"
+    },
+    {
+      name: "Parth Modi",
+      role: "Co-Convener",
+      image: "https://image2url.com/r2/default/images/1768932558818-3736647a-c2cb-4998-924f-5c030c08a802.jpeg"
+    },
+    {
+      name: "Ayush Sawarn",
+      role: "Co-Convener",
+      image: "https://image2url.com/r2/default/images/1768932490117-92c0c581-23a4-4bb1-be11-ff50314dd327.jpg"
+    },
+    {
+      name: "Parv",
+      role: "Co-Convener",
+      image: "https://image2url.com/r2/default/images/1768932603264-4f632151-fefa-494a-8a2a-3c5546c4db2e.jpg"
+    },
   ];
 
   const contacts = [
@@ -232,17 +248,25 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="md:col-span-8 backdrop-blur-md bg-black/60 border border-white/10 rounded-3xl p-8 hover:bg-black/70 hover:border-white/20 transition-all duration-500 shadow-2xl"
             >
-              <span className="text-xs text-white/30 uppercase tracking-widest font-['Michroma']">
+              <span className="text-xs text-white/30 uppercase tracking-widest font-['Roboto']">
                 Leadership
               </span>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
                 {conveners.map((person, idx) => (
                   <div key={idx} className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-white/10" />
-                    <p className="font-['Michroma'] text-sm font-medium text-white">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-white/10">
+                      {person.image && (
+                        <img
+                          src={person.image}
+                          alt={person.name}
+                          className="w-full h-full rounded-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <p className="font-['Roboto'] text-sm font-medium text-white">
                       {person.name}
                     </p>
-                    <p className="font-['Michroma'] text-xs text-white/40 mt-1">
+                    <p className="font-['Roboto'] text-xs text-white/40 mt-1">
                       {person.role}
                     </p>
                   </div>
@@ -284,21 +308,44 @@ export default function About() {
                   Built by
                 </span>
               </div>
-              <div className="flex flex-wrap gap-8">
-                {developers.map((dev, idx) => (
-                  <div key={idx} className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-400/20 border border-white/10" />
-                    <div>
-                      <p className="font-['Michroma'] font-medium text-white">
-                        {dev.name}
-                      </p>
-                      <p className="font-['Michroma'] text-sm text-white/40">
-                        {dev.role}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <div className="relative overflow-hidden">
+                <motion.div
+                  className="flex gap-8 cursor-grab active:cursor-grabbing"
+                  drag="x"
+                  dragConstraints={{ left: -300, right: 0 }}
+                  dragElastic={0.15}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {developers.map((dev, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="flex items-center gap-4 min-w-[260px]"
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    >
+                      {/* Image */}
+                      <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-cyan-400/20 to-purple-400/20 border border-white/10">
+                        <img
+                          src={dev.image}
+                          alt={dev.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Text */}
+                      <div>
+                        <p className="font-['Michroma'] font-medium text-white">
+                          {dev.name}
+                        </p>
+                        <p className="font-['Michroma'] text-sm text-white/40">
+                          {dev.role}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
+
             </motion.div>
           </div>
         </section>
