@@ -236,14 +236,14 @@ export default function Sessions() {
 
           // If grouping failed (e.g. no valid dates), fallback
           if (Object.keys(groups).length === 0 && transformedData.length > 0) {
-            groups["UPCOMING SESSIONS"] = transformedData;
+            groups["UPCOMING WORKSHOP"] = transformedData;
           }
 
           setGroupedSessions(groups);
         }
       } catch (err) {
-        console.error("Error fetching sessions:", err);
-        setError("Failed to load sessions. Please try again later.");
+        console.error("Error fetching workshops:", err);
+        setError("Failed to load workshops. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -317,7 +317,7 @@ export default function Sessions() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.3 }}
             >
-              SESSIONS
+              WORKSHOPS
             </motion.h1>
 
             <motion.div
@@ -348,7 +348,7 @@ export default function Sessions() {
             {loading ? (
               <div className="flex justify-center items-center h-64">
                 <div className="text-white text-xl font-['Michroma'] animate-pulse">
-                  Loading sessions...
+                  Loading workshops...
                 </div>
               </div>
             ) : error ? (
@@ -360,7 +360,7 @@ export default function Sessions() {
             ) : Object.keys(groupedSessions).length === 0 ? (
               <div className="flex justify-center items-center h-64">
                 <div className="text-gray-400 text-xl font-['Michroma']">
-                  No sessions found.
+                  No workshops found.
                 </div>
               </div>
             ) : (

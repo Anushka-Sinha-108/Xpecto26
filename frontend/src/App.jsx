@@ -56,9 +56,8 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
             <Route path="/about" element={<About />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/exhibition" element={<Exhibitions />} />
-            <Route path="/sessions" element={<Sessions />} />
+            <Route path="/profile" element={<Profile />} /> 
+            <Route path="/workshops" element={<Sessions />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/auth/success" element={<AuthSuccess />} />
             <Route path="/auth/error" element={<AuthError />} />

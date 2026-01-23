@@ -26,18 +26,13 @@ export default function XpectoSideBar({ children }) {
   const links = [
     { label: "Home", href: "/", icon: <IconHome className="h-5 w-5" /> },
     {
-      label: "Workshops",
-      href: "/exhibition",
-      icon: <IconPresentation className="h-5 w-5" />,
-    },
-    {
       label: "Events",
       href: "/events",
       icon: <IconCalendarEvent className="h-5 w-5" />,
     },
     {
-      label: "Sessions",
-      href: "/sessions",
+      label: "Workshops",
+      href: "/workshops",
       icon: <IconUsers className="h-5 w-5" />,
     },
     {
