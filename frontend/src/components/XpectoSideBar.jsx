@@ -26,7 +26,7 @@ export default function XpectoSideBar({ children }) {
   const links = [
     { label: "Home", href: "/", icon: <IconHome className="h-5 w-5" /> },
     {
-      label: "Exhibition",
+      label: "Workshops",
       href: "/exhibition",
       icon: <IconPresentation className="h-5 w-5" />,
     },

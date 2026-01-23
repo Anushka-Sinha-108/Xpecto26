@@ -239,7 +239,7 @@ const ExhibitionCard = ({ exhibition, index }) => {
                   />
 
                   <span className="relative z-10 flex items-center gap-3 text-base tracking-wider text-black font-bold">
-                    EXPLORE EXHIBITION
+                    EXPLORE WORKSHOPS
                     <motion.span
                       animate={{ x: isHovered ? 5 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -380,7 +380,7 @@ export default function Exhibitions() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.3 }}
             >
-              EXHIBITIONS
+              WORKSHOPS
             </motion.h1>
 
             <motion.div
@@ -407,7 +407,7 @@ export default function Exhibitions() {
           {loading ? (
             <div className="flex justify-center items-center h-64">
               <div className="text-white text-xl font-['Michroma'] animate-pulse">
-                Loading exhibitions...
+                Loading workshops...
               </div>
             </div>
           ) : error ? (
@@ -419,7 +419,7 @@ export default function Exhibitions() {
           ) : exhibitions.length === 0 ? (
             <div className="flex justify-center items-center h-64">
               <div className="text-gray-400 text-xl font-['Michroma']">
-                No exhibitions found.
+                COMING SOON
               </div>
             </div>
           ) : (
