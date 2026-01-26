@@ -61,13 +61,13 @@ export default function ProfileCompletionModal() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-  contactNumber: formData.contactNumber.trim(),
-    
+
     const profileData = {
       collegeName: formData.collegeName.trim(),
       collegeEmail: userHasWorkspaceEmail
         ? user.email
         : formData.collegeEmail.trim(),
+      contactNumber: formData.contactNumber.trim(),
     };
 
     const result = await completeProfile(profileData);
@@ -107,7 +107,7 @@ export default function ProfileCompletionModal() {
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none" />
 
           {/* Close button removed for compulsory key details */}
-          
+
           {/* Content */}
           <div className="relative p-6 pt-8">
             {/* Avatar & Welcome */}
@@ -261,7 +261,7 @@ export default function ProfileCompletionModal() {
             </form>
 
             {/* Skip option removed - fields are compulsory */}
-            
+
             {/* Legal Links */}
             <div className="mt-6 pt-4 border-t border-white/10 text-center text-xs text-white/30">
               By completing your profile, you agree to our{" "}
