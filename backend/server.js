@@ -72,6 +72,8 @@ const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
       process.env.FRONTEND_URL,
+      "https://xpecto.org",
+      "https://www.xpecto.org",
       "http://localhost:5173",
     ].filter(Boolean);
 

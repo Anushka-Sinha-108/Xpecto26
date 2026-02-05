@@ -6,13 +6,14 @@ import {
   IconArrowLeft,
   IconCalendarEvent,
   IconUsers,
-  IconPresentation,
+  IconReceipt,
+  IconSchool,
 } from "@tabler/icons-react";
 import { useAuth } from "../context/AuthContext";
 import AdminEvents from "../components/admin/AdminEvents";
-import AdminSessions from "../components/admin/AdminSessions";
-import AdminExhibitions from "../components/admin/AdminExhibitions";
+import AdminWorkshops from "../components/admin/AdminWorkshops";
 import AdminTeam from "../components/admin/AdminTeam";
+import AdminLeads from "../components/admin/AdminLeads";
 
 export default function AdminPanel() {
   const { user, isAuthenticated, loading } = useAuth();
@@ -38,8 +39,8 @@ export default function AdminPanel() {
 
   const tabs = [
     { id: "events", label: "Events", icon: IconCalendarEvent },
-    { id: "sessions", label: "Sessions", icon: IconUsers },
-    { id: "exhibitions", label: "Exhibitions", icon: IconPresentation },
+    { id: "workshops", label: "Workshops", icon: IconSchool },
+    { id: "leads", label: "Leads", icon: IconReceipt },
     { id: "team", label: "Team", icon: IconUsers },
   ];
 
@@ -91,8 +92,8 @@ export default function AdminPanel() {
       {/* Content */}
       <div className="mt-6">
         {activeTab === "events" && <AdminEvents />}
-        {activeTab === "sessions" && <AdminSessions />}
-        {activeTab === "exhibitions" && <AdminExhibitions />}
+        {activeTab === "workshops" && <AdminWorkshops />}
+        {activeTab === "leads" && <AdminLeads />}
         {activeTab === "team" && <AdminTeam />}
       </div>
     </div>
