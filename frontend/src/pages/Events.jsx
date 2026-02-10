@@ -13,9 +13,11 @@ import {
   Building2,
   Users,
   Sparkles,
+  BookOpen,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import FloatingElement from "../components/ui/FloatingElement";
+import OptimizedImage from "../components/ui/OptimizedImage";
 
 const BACKEND_URL = import.meta.env.BACKEND_URL || "https://xpecto.org/api";
 
@@ -54,10 +56,11 @@ const EventCard = ({
                 <div className="relative w-full max-w-sm">
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                     {event.image && event.image.length > 0 ? (
-                      <img
+                      <OptimizedImage
                         src={event.image[0]}
                         alt={event.title}
                         className="w-full h-full object-cover"
+                        skeleton={true}
                       />
                     ) : (
                       <div className="w-full h-64 bg-white/5 flex items-center justify-center">
@@ -180,21 +183,26 @@ const EventCard = ({
                   </motion.div>
                 )}
 
-                {registrationCount > 0 && (
+                {event.rulebook && (
                   <motion.div
                     className="flex items-start gap-3 group"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
+                    transition={{ delay: 0.25, duration: 0.5 }}
                   >
-                    <Users className="w-5 h-5 text-white/40 mt-0.5 shrink-0" />
+                    <BookOpen className="w-5 h-5 text-white/40 mt-0.5 shrink-0" />
                     <div>
                       <p className="font-['Michroma'] text-xs text-white/40 mb-1">
-                        Registrations
+                        Rulebook
                       </p>
-                      <p className="font-['Michroma'] text-sm text-white/80">
-                        {registrationCount} {registrationCount === 1 ? "participant" : "participants"}
-                      </p>
+                      <a
+                        href={event.rulebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-['Michroma'] text-sm text-white/80 hover:text-white underline decoration-white/30 hover:decoration-white/60 transition-colors"
+                      >
+                        View Rulebook
+                      </a>
                     </div>
                   </motion.div>
                 )}
@@ -210,7 +218,10 @@ const EventCard = ({
                       ? "bg-emerald-500"
                       : "bg-linear-to-r from-white via-gray-100 to-white"
                   }`}
-                  whileHover={{ scale: registering ? 1 : 1.02, y: registering ? 0 : -2 }}
+                  whileHover={{
+                    scale: registering ? 1 : 1.02,
+                    y: registering ? 0 : -2,
+                  }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.25 }}
                 >
@@ -432,7 +443,13 @@ export default function Events() {
       {/* Fixed Background Section */}
       <div className="fixed top-0 left-0 w-full h-screen z-0">
         <div className="absolute inset-0">
-          <img src="./bg5.png" alt="" className="w-full h-full object-cover" />
+          <OptimizedImage
+            src="./bg5.png"
+            alt="Background"
+            className="w-full h-full object-cover"
+            priority={false}
+            skeleton={false}
+          />
           <div className="absolute inset-0 bg-black/70" />
         </div>
 
@@ -500,7 +517,8 @@ export default function Events() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Join us for extraordinary experiences and groundbreaking competitions
+              Join us for extraordinary experiences and groundbreaking
+              competitions
             </motion.p>
 
             {/* Search Bar */}
@@ -539,7 +557,9 @@ export default function Events() {
           {error && (
             <div className="flex items-center justify-center py-32">
               <div className="backdrop-blur-md bg-red-900/40 border border-red-500/20 rounded-3xl px-8 py-6 max-w-md shadow-2xl">
-                <p className="text-red-200 text-center mb-4 font-['Michroma']">{error}</p>
+                <p className="text-red-200 text-center mb-4 font-['Michroma']">
+                  {error}
+                </p>
                 <button
                   onClick={fetchEvents}
                   className="w-full px-6 py-3 border border-red-400/40 rounded-xl text-red-300 hover:bg-red-400/10 transition font-['Michroma'] font-bold tracking-wider"

@@ -2,9 +2,25 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { IconLoader2, IconCheck, IconUpload, IconX, IconSparkles, IconShieldCheck } from "@tabler/icons-react";
-import { Utensils, Home, Bed, Music, GraduationCap, Gift, Ticket } from "lucide-react";
+import {
+  IconLoader2,
+  IconCheck,
+  IconUpload,
+  IconX,
+  IconSparkles,
+  IconShieldCheck,
+} from "@tabler/icons-react";
+import {
+  Utensils,
+  Home,
+  Bed,
+  Music,
+  GraduationCap,
+  Gift,
+  Ticket,
+} from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import OptimizedImage from "../components/ui/OptimizedImage";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "https://xpecto.org/api";
 
@@ -49,7 +65,14 @@ const CTAButton = ({ onClick, disabled, loading, isRegistered, children }) => {
 };
 
 // Payment QR modal component (simplified to match Events UI)
-const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingLead }) => {
+const PaymentModal = ({
+  isOpen,
+  onClose,
+  amount,
+  onSubmit,
+  submitting,
+  existingLead,
+}) => {
   const [transactionId, setTransactionId] = useState("");
   const [paymentProof, setPaymentProof] = useState("");
   const [paymentProofUrl, setPaymentProofUrl] = useState("");
@@ -75,14 +98,23 @@ const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingL
   // Prefill when viewing existing lead
   useEffect(() => {
     if (!existingLead) return;
-    if (existingLead.transactionId) setTransactionId(existingLead.transactionId);
+    if (existingLead.transactionId)
+      setTransactionId(existingLead.transactionId);
     if (existingLead.paymentProof) {
-      setPaymentProofUrl(`${API_BASE_URL}/leads/payment-proof/${existingLead.paymentProof}`);
+      setPaymentProofUrl(
+        `${API_BASE_URL}/leads/payment-proof/${existingLead.paymentProof}`,
+      );
     }
-    if (existingLead.campusAmbassadorCode) setCampusAmbassadorCode(existingLead.campusAmbassadorCode);
-    if (existingLead.numberOfParticipants) setNumberOfParticipants(String(existingLead.numberOfParticipants));
+    if (existingLead.campusAmbassadorCode)
+      setCampusAmbassadorCode(existingLead.campusAmbassadorCode);
+    if (existingLead.numberOfParticipants)
+      setNumberOfParticipants(String(existingLead.numberOfParticipants));
     if (existingLead.selectedEvents?.length) {
-      setSelectedEvents(existingLead.selectedEvents.map(e => typeof e === "string" ? e : e._id));
+      setSelectedEvents(
+        existingLead.selectedEvents.map((e) =>
+          typeof e === "string" ? e : e._id,
+        ),
+      );
     }
   }, [existingLead]);
 
@@ -166,13 +198,17 @@ const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingL
       paymentProof,
       campusAmbassadorCode: campusAmbassadorCode.trim() || undefined,
       selectedEvents,
-      numberOfParticipants: numberOfParticipants ? parseInt(numberOfParticipants) : undefined,
+      numberOfParticipants: numberOfParticipants
+        ? parseInt(numberOfParticipants)
+        : undefined,
     });
   };
 
   const toggleEvent = (eventId) => {
     setSelectedEvents((prev) =>
-      prev.includes(eventId) ? prev.filter((id) => id !== eventId) : [...prev, eventId]
+      prev.includes(eventId)
+        ? prev.filter((id) => id !== eventId)
+        : [...prev, eventId],
     );
   };
 
@@ -275,14 +311,22 @@ const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingL
                   ) : paymentProof ? (
                     <>
                       <IconCheck className="w-8 h-8 text-green-400 mb-2" />
-                      <p className="text-sm text-green-400">Screenshot uploaded</p>
-                      <p className="text-xs text-white/40 mt-1">Click to change</p>
+                      <p className="text-sm text-green-400">
+                        Screenshot uploaded
+                      </p>
+                      <p className="text-xs text-white/40 mt-1">
+                        Click to change
+                      </p>
                     </>
                   ) : (
                     <>
                       <IconUpload className="w-8 h-8 text-white/60 mb-2" />
-                      <p className="text-sm text-white/60">Click to upload screenshot</p>
-                      <p className="text-xs text-white/40 mt-1">PNG, JPG up to 5MB</p>
+                      <p className="text-sm text-white/60">
+                        Click to upload screenshot
+                      </p>
+                      <p className="text-xs text-white/40 mt-1">
+                        PNG, JPG up to 5MB
+                      </p>
                     </>
                   )}
                 </label>
@@ -361,9 +405,13 @@ const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingL
                       className="w-4 h-4 rounded border-white/30 bg-white/10 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-0 accent-cyan-500"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-sm font-medium truncate">{event.title}</p>
+                      <p className="text-white text-sm font-medium truncate">
+                        {event.title}
+                      </p>
                       {event.club_name && (
-                        <p className="text-white/40 text-xs">{event.club_name}</p>
+                        <p className="text-white/40 text-xs">
+                          {event.club_name}
+                        </p>
                       )}
                     </div>
                     {event.date && (
@@ -474,7 +522,13 @@ export default function Register() {
     }
   };
 
-  const handlePaymentSubmit = async ({ transactionId, paymentProof, campusAmbassadorCode, selectedEvents, numberOfParticipants }) => {
+  const handlePaymentSubmit = async ({
+    transactionId,
+    paymentProof,
+    campusAmbassadorCode,
+    selectedEvents,
+    numberOfParticipants,
+  }) => {
     if (!existingLead) return;
 
     setSubmitting(true);
@@ -515,7 +569,13 @@ export default function Register() {
       {/* Fixed Background */}
       <div className="fixed top-0 left-0 w-full h-screen z-0">
         <div className="absolute inset-0">
-          <img src="./bg6.png" alt="" className="w-full h-full object-cover" />
+          <OptimizedImage
+            src="./bg6.png"
+            alt="Background"
+            className="w-full h-full object-cover"
+            priority={false}
+            skeleton={false}
+          />
           <div className="absolute inset-0 bg-black/70" />
         </div>
 
@@ -710,13 +770,17 @@ export default function Register() {
               </h4>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="font-['Michroma'] text-white/80 text-sm">Pass Type</span>
+                  <span className="font-['Michroma'] text-white/80 text-sm">
+                    Pass Type
+                  </span>
                   <span className="font-['Michroma'] text-white text-sm capitalize">
                     {existingLead.passType?.replace("_", " ")}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="font-['Michroma'] text-white/80 text-sm">Payment Status</span>
+                  <span className="font-['Michroma'] text-white/80 text-sm">
+                    Payment Status
+                  </span>
                   <span
                     className={`font-['Michroma'] text-sm px-3 py-1 rounded-full ${existingLead.paymentStatus === "completed"
                       ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
