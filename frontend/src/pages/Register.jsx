@@ -14,11 +14,10 @@ const CTAButton = ({ onClick, disabled, loading, isRegistered, children }) => {
     <motion.button
       onClick={onClick}
       disabled={disabled}
-      className={`group relative px-8 sm:px-10 py-3 sm:py-4 font-['Michroma'] font-bold text-white overflow-hidden rounded-xl shadow-lg w-full sm:w-auto ${
-        isRegistered
-          ? "bg-emerald-500"
-          : "bg-linear-to-r from-white via-gray-100 to-white"
-      }`}
+      className={`group relative px-8 sm:px-10 py-3 sm:py-4 font-['Michroma'] font-bold text-white overflow-hidden rounded-xl shadow-lg w-full sm:w-auto ${isRegistered
+        ? "bg-emerald-500"
+        : "bg-linear-to-r from-white via-gray-100 to-white"
+        }`}
       whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -2 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.25 }}
@@ -237,9 +236,8 @@ const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingL
                 setErrors({ ...errors, transactionId: null });
               }}
               placeholder="Enter your transaction ID"
-              className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${
-                errors.transactionId ? "border-red-500/50" : "border-white/10"
-              } text-white placeholder-white/30 focus:outline-none focus:border-cyan-500/50 transition-colors`}
+              className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${errors.transactionId ? "border-red-500/50" : "border-white/10"
+                } text-white placeholder-white/30 focus:outline-none focus:border-cyan-500/50 transition-colors`}
             />
             {errors.transactionId && (
               <p className="mt-1 text-sm text-red-400">
@@ -265,13 +263,12 @@ const PaymentModal = ({ isOpen, onClose, amount, onSubmit, submitting, existingL
                 />
                 <label
                   htmlFor="payment-proof"
-                  className={`flex flex-col items-center justify-center w-full px-4 py-8 rounded-xl border-2 border-dashed ${
-                    errors.paymentProof
-                      ? "border-red-500/50 bg-red-500/5"
-                      : paymentProof
-                        ? "border-green-500/50 bg-green-500/5"
-                        : "border-white/20 bg-white/5"
-                  } cursor-pointer hover:border-cyan-500/50 transition-colors`}
+                  className={`flex flex-col items-center justify-center w-full px-4 py-8 rounded-xl border-2 border-dashed ${errors.paymentProof
+                    ? "border-red-500/50 bg-red-500/5"
+                    : paymentProof
+                      ? "border-green-500/50 bg-green-500/5"
+                      : "border-white/20 bg-white/5"
+                    } cursor-pointer hover:border-cyan-500/50 transition-colors`}
                 >
                   {uploading ? (
                     <IconLoader2 className="w-8 h-8 text-white/60 animate-spin mb-2" />
@@ -566,13 +563,21 @@ export default function Register() {
           </motion.div>
 
           <motion.h1
-            className="font-['Michroma'] text-5xl md:text-7xl font-light text-white mb-6 tracking-[0.15em]"
+            className="
+    font-['Michroma']
+    text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+    font-light text-white
+    mb-4 sm:mb-5 md:mb-6
+    tracking-widest sm:tracking-[0.12em] md:tracking-[0.15em]
+  "
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
           >
             REGISTER
           </motion.h1>
+
+
 
           <motion.div
             className="h-1 w-48 mx-auto bg-white/20 mb-6"
@@ -609,11 +614,10 @@ export default function Register() {
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
               <motion.div
-                className={`p-6 rounded-2xl border ${
-                  isEarlyBird
-                    ? "border-white bg-white/10"
-                    : "border-white/10 bg-white/5"
-                }`}
+                className={`p-6 rounded-2xl border ${isEarlyBird
+                  ? "border-white bg-white/10"
+                  : "border-white/10 bg-white/5"
+                  }`}
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -636,11 +640,10 @@ export default function Register() {
               </motion.div>
 
               <motion.div
-                className={`p-6 rounded-2xl border ${
-                  !isEarlyBird
-                    ? "border-white bg-white/10"
-                    : "border-white/10 bg-white/5"
-                }`}
+                className={`p-6 rounded-2xl border ${!isEarlyBird
+                  ? "border-white bg-white/10"
+                  : "border-white/10 bg-white/5"
+                  }`}
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -715,13 +718,12 @@ export default function Register() {
                 <div className="flex justify-between items-center">
                   <span className="font-['Michroma'] text-white/80 text-sm">Payment Status</span>
                   <span
-                    className={`font-['Michroma'] text-sm px-3 py-1 rounded-full ${
-                      existingLead.paymentStatus === "completed"
-                        ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                        : existingLead.paymentStatus === "pending"
-                          ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-                          : "bg-red-500/20 text-red-400 border border-red-500/30"
-                    }`}
+                    className={`font-['Michroma'] text-sm px-3 py-1 rounded-full ${existingLead.paymentStatus === "completed"
+                      ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                      : existingLead.paymentStatus === "pending"
+                        ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                        : "bg-red-500/20 text-red-400 border border-red-500/30"
+                      }`}
                   >
                     {existingLead.paymentStatus}
                   </span>

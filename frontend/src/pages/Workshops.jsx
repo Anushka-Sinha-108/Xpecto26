@@ -314,13 +314,23 @@ export default function Workshops() {
             </motion.div>
 
             <motion.h1
-              className="font-['Michroma'] text-4xl sm:text-6xl md:text-8xl font-light text-transparent bg-clip-text bg-linear-to-r from-white via-gray-200 to-white mb-8 tracking-widest sm:tracking-[0.2em] leading-tight whitespace-nowrap"
+              className="
+              font-['Michroma']
+              text-3xl sm:text-5xl md:text-7xl lg:text-8xl
+              font-light
+              text-transparent bg-clip-text
+              bg-linear-to-r from-white via-gray-200 to-white
+              mb-6 sm:mb-8
+              tracking-widest sm:tracking-[0.15em] md:tracking-[0.2em]
+              leading-tight
+            "
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.3 }}
             >
               WORKSHOPS
             </motion.h1>
+
 
             <motion.div
               className="h-1 w-48 mx-auto bg-linear-to-r from-transparent via-white to-transparent mb-8"
